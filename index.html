@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExportFlow — US Buyer Discovery & Outreach Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div>
+      <h1>ExportFlow — US Buyer Discovery & Outreach Dashboard</h1>
+      <span>API Lead Extraction • Email Validation • AI B2B Classification • Gmail PDF Outreach</span>
+    </div>
+    <button class="btn-gray" onclick="resetDemoData()">Reset Demo Data</button>
+  </header>
+
+  <div class="container">
+    <div id="alertBox" class="alert"></div>
+
+    <div class="stats">
+      <div class="stat-card">
+        <p>Total Saved Leads</p>
+        <h2 id="statTotal">0</h2>
+      </div>
+      <div class="stat-card">
+        <p>Valid B2B Buyers</p>
+        <h2 id="statB2B">0</h2>
+      </div>
+      <div class="stat-card">
+        <p>Duplicates / Invalid Blocked</p>
+        <h2 id="statBlocked">0</h2>
+      </div>
+      <div class="stat-card">
+        <p>Catalog PDFs Sent</p>
+        <h2 id="statSent">0</h2>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>1. Buyer Discovery Module (API Extraction)</h3>
+      <div class="grid-form">
+        <input type="text" id="apiKeyword" value="Singing Bowls" placeholder="Product Keyword (e.g., Home Decor)" />
+        <select id="apiLocation">
+          <option value="Houston, TX">Houston, Texas (USA)</option>
+          <option value="New York, NY">New York, NY (USA)</option>
+          <option value="Los Angeles, CA">Los Angeles, CA (USA)</option>
+          <option value="Chicago, IL">Chicago, IL (USA)</option>
+        </select>
+        <select id="apiSource">
+          <option value="Google Maps API">Google Maps / Places API</option>
+          <option value="LinkedIn B2B">LinkedIn Sales Directory</option>
+          <option value="ImportYeti">ImportYeti US Customs</option>
+        </select>
+        <button onclick="simulateApiFetch()">Fetch Buyer via API</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>2. Manual Lead Entry (Auto Email Validation, Duplicate Block & AI Classification)</h3>
+      <form class="grid-form" onsubmit="addManualLead(event)">
+        <input type="text" id="inCompany" placeholder="Company / Showroom Name" required />
+        <input type="text" id="inProduct" placeholder="Product (e.g., Lamps)" required />
+        <input type="text" id="inEmail" placeholder="Email ID" required />
+        <input type="text" id="inPhone" placeholder="US Phone (+1-...)" />
+        <button type="submit">+ Validate & Save Lead</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="table-header">
+        <div>
+          <h3>3. Buyer Database & Automated Gmail Outreach</h3>
+          <small>Attachment Ready: <strong>India_Handicrafts_Catalog_2026.pdf</strong></small>
+        </div>
+        <div class="action-buttons">
+          <button class="btn-gray" onclick="exportCSV()">Export CSV</button>
+          <button class="btn-green" onclick="sendBulkOutreach()">Send Pitch PDF to Valid B2B</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Company / Showroom</th>
+              <th>Product</th>
+              <th>Source</th>
+              <th>Email ID</th>
+              <th>Validation</th>
+              <th>AI Classification</th>
+              <th>Outreach Status</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
